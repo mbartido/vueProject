@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Wagon App</title>
+  <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- Buttons for adding trains -->
+    <div class="container">
+      <h1 class="text-center" id="heading1">Add a Wagon</h1>
+      <div class="row text-center">
+        <div class="col-3">
+          <button type="button" class="btn btn-primary" v-on:click="addWagon('Open', 'Default')">Open</button>
+        </div>
+
+        <div class="col-3">
+          <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Covered
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#" v-on:click="addWagon('Covered', 'Default')">Default</a>
+              <a class="dropdown-item" href="#" v-on:click="addWagon('Covered', 'Regular')">Regular</a>
+              <a class="dropdown-item" href="#" v-on:click="addWagon('Covered', 'Refrigerated')">Refrigerated</a>
+              <a class="dropdown-item" href="#" v-on:click="addWagon('Covered', 'Livestock')">Livestock</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3">
+          <button type="button" class="btn btn-primary" v-on:click="addWagon('Flat', 'Default')">Flat</button>
+        </div>
+
+        <div class="col-3">
+          <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Tank
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#" v-on:click="addWagon('Tank', 'Default')">Default</a>
+              <a class="dropdown-item" href="#" v-on:click="addWagon('Tank', 'Liquid')">Liquid</a>
+              <a class="dropdown-item" href="#" v-on:click="addWagon('Tank', 'Gas')">Gas</a>
+              <a class="dropdown-item" href="#" v-on:click="addWagon('Tank', 'Refrigerated Liquid')">Refrigerated
+                Liquid</a>
+              <a class="dropdown-item" href="#" v-on:click="addWagon('Tank', 'Refrigerated Gas')">Refrigerated Gas</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <hr>
+
+      <!-- Table to display wagons added -->
+      <div id="table-container">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Order</th>
+              <th scope="col">Type</th>
+              <th scope="col">Subtype</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="app" v-for="(value, index) in trains">
+              <th scope="row">{{ index + 1 }} &nbsp;
+                <i class="fa fa-remove" v-on:click="removeWagon(index)"></i>
+              </th>
+              <td>{{ value.type }}</td>
+              <td>{{ value.subtype }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <hr>
+
+      <!-- Section to switch wagon order -->
+      <div id="order-container">
+        <h4 class="text-center" id="order-text">Enter order of wagons to switch
+          <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Make sure to input valid order numbers. If you don't then the 
+            order of the wagons won't switch."></i>
+        </h4>
+        <div class="input-group">
+          <input type="text" class="form-control" id="index_1">
+          <input type="text" class="form-control" id="index_2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" v-on:click="switchWagon">Switch Order</button>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Button submission and display of JSON of train -->
+      <button type="button" class="btn btn-primary btn-lg btn-block" id="submit-button" data-toggle="tooltip"
+        data-placement="top" title="Will show JSON representation of trains upon subimssion."
+        v-on:click="submitWagons">Submit</button>
+      <h4 class="text-center" id="json-heading">JSON</h4>
+      <p id="json-text">{{ jsonText }}</p>
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>

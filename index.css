@@ -1,0 +1,32 @@
+#app {
+  margin: 20px 20px;
+}
+
+#heading1 {
+  margin-bottom: 20px;
+}
+ 
+#table-container {
+  margin-top: 20px;
+}
+
+#order-container {
+  margin-top: 20px;
+}
+
+#order-text {
+  margin-bottom: 15px;
+}
+
+#submit-button {
+  margin-top: 20px;
+}
+
+#json-heading {
+  margin-top: 20px;
+}
+
+#json-text {
+  white-space: pre;
+  margin-top: 15px;
+}
